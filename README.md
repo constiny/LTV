@@ -34,11 +34,19 @@ In most B2C business, customer value could be defined as many way, such as
 
 * Gross Revenue
 * Net Gross Margin
-* Discounted Cash Flow (DCF)
-
+* Either one in future certain time
 -------
 
 # ML
+
+## Data
+
+We use a anonymised transactional data from Kaggle which contains almost 350 million rows from over 300,000 customers. It is a good general data example of B2C business.
+
+Date Range: 2012-03-02 to 2013-07-28
+Total customers: 	311,541
+Total Transactions: 26,496,645
+Medium of transactions per customer in date range: 72
 
 ## EDA
 
