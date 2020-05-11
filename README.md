@@ -52,6 +52,8 @@ The most common method to segmentize customers is using RFM to differiate custom
 
 from https://www.optimove.com/resources/learning-center/rfm-segmentation
 
+To conduct RFM analysis, we sorted Recency, Frequency, Monetary value for all customers and ranked with 1~5. Each rank is a group so that we will have 5X5X5 = 125 groups.
+
 Target Type: Categorical
 
 Common Algorithm: K-nearest neighbors, Naive Bayes Classification, Support Vector Machines, etc
@@ -80,7 +82,7 @@ Number of transaction in Unit time ~ Poission Distribution
 Customer lifetime length ~ Expontial Distribution
 Single transaction amount - Gamma Distribution
 
-The confined model built is call Pareto/NBD Gamma Gamma model.
+The combined model built is call Pareto/NBD Gamma Gamma model.
 
 https://github.com/dataandcaffeine/pydata-seattle-2017/tree/master/lifetime-value
 -------
@@ -91,34 +93,34 @@ https://github.com/dataandcaffeine/pydata-seattle-2017/tree/master/lifetime-valu
 
 We use anonymized transactional data from Kaggle which contains almost 350 million rows from over 300,000 customers. It is a good general data example of a B2C business.
 
-Date Range: 2012-03-02 to 2013-07-28
-We split the date at 2013-03-01
+* Date Range: 
 
-Total customers: 	311,541
-Total Transactions: 26,496,645
-Each transactional record includes features `customer_id, store_id, purchase_date, item_brand, item_department, item quantity and amount` 
+`2012-03-02 to 2013-07-28`
 
-We transform the raw transaction data into
-`customer_id, store_id, first_purchase_date, last_purchase_date, average_purchase_amount, number_of_transactions`
+We cut the data at 2013-03-01 and makes the data before that time be our predictors and the data from 2013-03-02 to 2013-07-01 to be the response.
 
-The medium of transactions per customer in a date range: 72
+* Features:
+
+`customer_id, store_id, purchase_date, item_brand, item_department, item quantity and amount` 
+
+To simplify all the models, we excluded any item inforation, such as brand, department etc, then transformed the raw transaction data into
+`customer_id, store_id, first_purchase_date, last_purchase_date, average_purchase_amount, number_of_transactions, last_4_months_spend, next_4_months_spend`
+
+where `last_4_months_spend` is total transaction amount from 2013-11-02 to 2013-03-01 and `next_4_months_spend` is total transaction amount. Other helper features will be introduced on specific model.
 
 ### Train test split
 
-The test set is split on time
+The train-test set is split on 80:20 randomly.
 
-### Train Validation
 
-### Feature Definition
-
-* **Churn**
-* **Recency**
-* **Frequency**
-* **Monetery**
 
 ## EDA
 
 ## Churn
+
+New feature as response:
+`Churn`: Value 1 when customer have at least one purchase during 2013-03-02 to 2013-07-01, else 0.
+Value 1 when customer have at least one purchase during 2013-03-02 to 2013-07-01, else 0.
 ML Algorithm: Crossvalidate based on F1 score for following models:
 
 K-nearest neighbors, Naive Bayes Classification, Logister Regression, Ramdon Forest.
@@ -127,10 +129,19 @@ Decision making base: Predict revenue by calculate 2X2 cost-benefit matrix mutip
 
 ## RFM
 
+New feature as response:
+`RFM Class`: a string `a - b - c` abc represents the RFM ranking.
+
+ML Algorithm: Crossvalidate based on F1 score for following models:
+
+K-nearest neighbors, Naive Bayes Classification, Logister Regression, Ramdon Forest.
+
+Decision making base: Predict revenue by calculate 2X2 cost-benefit matrix mutiply by the confusion matrix.
+
 ## CLTV
 
 Pareto/NBD Model a hierarchical Bayesian model. 
-/ Gamma-Gamma
+Gamma-Gamma
 
 ## Comparision
 
