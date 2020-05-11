@@ -5,10 +5,11 @@
 
 In data science, one of the hottest topic is Churn Analysis.
 
-**Churn Analysis** is a technique to predict whether a current customer will leave or stay in near future base on information at present which is cruicial to many B2C business because the cost of retaining an existing customer is generally less than acquiring a new one. In order to prevent customer churn, companies often provide retention offer to customers were predicted churned.
+**Churn Analysis** is a technique to predict whether a current customer will leave or stay in near future base on information at present. It is cruicial to many B2C business because the cost of retaining an existing customer is generally less than acquiring a new one. In order to prevent customer churn, companies often provide retention offer to customers were predicted churned.
 
 ## Motivation
 
+However, unlike some special case like credit card or subscribution membership, in many business cases, customer will not notify the business when they want to leave, which is called non-contractual.
 Such business decision was made based on there are only two types of customers, churn and not churn. However, it is not the most optimizing way to manage customer relationship. In marketing, customers were dividing into sereval small groups that are similar demographics or spending habits. Moreover, the customer lifetime value within grouped was often used for business desicions and planning.
 
 ## Objective
@@ -55,6 +56,10 @@ Medium of transactions per customer in date range: 72
 ## RFM
 
 ## CLTV
+
+Beta-Geometric/Beta-Binomial
+
+Pareto/NBD Model a hierarchical Bayasian model. / Gamma-Gamma
 
 ## Comparision
 
