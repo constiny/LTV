@@ -150,6 +150,11 @@ Gamma-Gamma
 
 ## What's next?
 
+## Thanks to
+Pareto/NBD “Counting Your Customers” framework proposed by Schmittlein, Morrison, and Colombo (1987) 
+
+
+
 RFM and CLV: Using Iso-value Curves for Customer Base Analysis Peter S. Fader, Bruce G. S. Hardie, Ka Lok Lee
 
 
