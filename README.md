@@ -84,6 +84,8 @@ Single transaction amount - Gamma Distribution
 
 The combined model built is call Pareto/NBD Gamma Gamma model.
 
+$$RMSE = \sqrt{\frac{\sum (\hat{y_i} - y_i)^{2}}{n}}$$
+
 https://github.com/dataandcaffeine/pydata-seattle-2017/tree/master/lifetime-value
 -------
 
