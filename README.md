@@ -84,6 +84,8 @@ Single transaction amount - Gamma Distribution
 
 The combined model built is call Pareto/NBD Gamma Gamma model.
 
+$$RMSE = \sqrt{\frac{\sum (\hat{y_i} - y_i)^{2}}{n}}$$
+
 https://github.com/dataandcaffeine/pydata-seattle-2017/tree/master/lifetime-value
 -------
 
@@ -97,30 +99,28 @@ We use anonymized transactional data from Kaggle which contains almost 350 milli
 
 `2012-03-02 to 2013-07-28`
 
-We cut the data at 2013-03-01 and makes the data before that time be our predictors and the data from 2013-03-02 to 2013-07-01 to be the response.
+After a quick EDA on the raw data, we only keep first 12 month of raw data and cut the data at 2012-12-01(at the end on 9th month) and makes the data before that time be our predictors and the data from 2012-12-02 to 2013-03-01 (10th to 12th month) to be the response.
 
 * Features:
 
 `customer_id, store_id, purchase_date, item_brand, item_department, item quantity and amount` 
 
 To simplify all the models, we excluded any item inforation, such as brand, department etc, then transformed the raw transaction data into
-`customer_id, store_id, first_purchase_date, last_purchase_date, average_purchase_amount, number_of_transactions, last_4_months_spend, next_4_months_spend`
+`customer_id, store_id, first_purchase_date, last_purchase_date, average_purchase_amount, number_of_transactions, last_3_months_spend, next_3_months_spend`
 
-where `last_4_months_spend` is total transaction amount from 2013-11-02 to 2013-03-01 and `next_4_months_spend` is total transaction amount. Other helper features will be introduced on specific model.
+where `last_3_months_spend` is total transaction amount from 2012-09-02 to 2012-12-01 and `next_4_months_spend` is total transaction amount. Other helper features will be introduced on specific model.
 
 ### Train test split
 
 The train-test set is split on 80:20 randomly.
-
-
 
 ## EDA
 
 ## Churn
 
 New feature as response:
-`Churn`: Value 1 when customer have at least one purchase during 2013-03-02 to 2013-07-01, else 0.
-Value 1 when customer have at least one purchase during 2013-03-02 to 2013-07-01, else 0.
+`Churn`: Value 1 when customer have at least one purchase during 2012-12-02 to 2013-03-01, else 0.
+
 ML Algorithm: Crossvalidate based on F1 score for following models:
 
 K-nearest neighbors, Naive Bayes Classification, Logister Regression, Ramdon Forest.
@@ -151,6 +151,11 @@ Gamma-Gamma
 ## Takeaways
 
 ## What's next?
+
+## Thanks to
+Pareto/NBD “Counting Your Customers” framework proposed by Schmittlein, Morrison, and Colombo (1987) 
+
+The Gamma-Gamma Model of Monetary Value Peter S. Fader, Bruce G. S. Hardie† February 2013
 
 RFM and CLV: Using Iso-value Curves for Customer Base Analysis Peter S. Fader, Bruce G. S. Hardie, Ka Lok Lee
 
