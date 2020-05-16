@@ -1,6 +1,37 @@
 # Analysis on Customer Lifetime Value
 ----------
 
+
+## Motivation
+
+In marketing, one question often being asked is what is a customer lifetime value. By definition
+
+> **Customer lifetime value** is the present value of the future (net) cash flows associated with the customer.
+
+In practice, we usually simplify the question to 
+
+> how much will the customer buy in the future?
+
+
+# Why do we care?
+* Determine customer acquisition spend
+* Assist on evaluating marketing campaign ROI
+* Help marketing budget allocation
+* Some use for sales prediction sanity check
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Background
 
 In data science, one of the hottest topics is Churn Analysis.
