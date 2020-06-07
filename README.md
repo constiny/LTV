@@ -1,6 +1,6 @@
 # Analysis on Customer Lifetime Value
 ----------
-Vince Pan
+By Vince Pan
 
 -----------------------
 
@@ -13,7 +13,6 @@ Vince Pan
 [3. Model](#Model)
 > [3.1. Data preprocessing](#Model)<br>
 > [3.2. CLTV Model](#cm)<br>
-> [3.3. Other Model](#om)<br>
 
 [4. Applications](#Applications)
 > [4.1. Who’s VIP](#Applications)<br>
@@ -104,7 +103,8 @@ Average Transaction Amount: 430
 * Note: One transaction is defined as the aggregation of all purchased records made in the same day.
  
 The total sales of the company does not have a clear trend but there is a surge in Winter.
-Trend here
+
+> <img src="img/sales_trend.png" />
  
  
 ### Train-Test Split
@@ -112,31 +112,67 @@ In order to make the data fit into our CLTV, we divided the dataset by time. The
  
 For comparison with supervised methods, we divided the training set into 8:2 in months to set up the predictor and target.
  
-Plot here
- 
-
-
+> <img src="img/Train_test_split.png" />
 
 ## CLTV Model
 <a id="cm"> </a>
 ### Feature Engineering
 
-In 
+Similar to the classical marketing segmentation method, the CLTV model only rely on the RFM metrics of customer previous purchases. 
 
+Here are the features we need:
+Recency:
+* T:   represents the age of the customer in present time, i.e. how many days since his first purchase
+* R:  represents the age of the customer when they made their most recent purchases, , i.e. how many days since his first purchase
+
+F for Frequency: represents the number of repeat purchases the customer has made, i.e. how many purchases he made after the first one
+M for Monetery: represents the average value of a given customer’s purchases, i.e. average amount
+
+We used the same feature for the CLTV model and other classical machine learning models.
 
 ### Model Stats
 
-## Other Model
-<a id="om"> </a>
+We use the RMSE(Rooted Mean Squared Error) to compare the performance of models. Please refer to the Jupyter notebook for detail modeling codes.
 
+> RMSE = Squared Root of Summation of the Prediction Error
+
+To compare with the most intuitive method of the prediction, we use the mean of customer lifetime monthly spend as our baseline.
+
+| Method    |         Base         |     CLTV    | Supervised Learning |  Supervised Learning   |Supervised Learning   |
+|-----------|:--------------------:|:----------:|:-------------------:|:-----------------:|:-----------------:|
+| Algorithm | Lifetime monthly avg | Pareto/NBD |    Random Forest    | Linear Regression |Support Vector Machine |
+| RMSE*     |         3140         |    1660    |         1808        |        1774       |2682 |
+
+The CLTV model has the lowest RMSE which indicates it has the highest accuracy in prediction. Also the model has a strong interpretability for business applications. 
 
 # Applications
 <a id="Applications"> </a>
 ## Who’s VIP
 
+A general application of calculating customer value is that we want to prioritize our limited resource on the most valued customer.
+
+The regular method for determining customer value by accumulated spending. However, a customer spent a big amount one year ago and no spending after that would have a lower expectation spending than people who spent the half amount twice recently. By CLTV model, we are able to tell who has a higher chance to come back and how much they will spend in a future period.
+
+By ranking the future expense, we can tell who should be our VIP?
+
+| Prediction on | # of Purchase | $ of Single Purchase | LTV |
+|:-------------:|:-------------:|:--------------------:|:---:|
+|     Jessie    |      0.43     |          179         |  78 |  
+|     Ellie     |      0.97     |          74          |  72 |   
+|     ...      |       ...     |       ...          |  ...   |   
+|    Calli    |       0.07     |           54         |   4  |   
+
+
 ## Churn Alarm
 <a id="ca"> </a>
 
+Another major usage of this model is to assess the probability the customer is still alive with our business which here alive indicates they will buy in the future.
+
+Here is an example for two customers.
+
+> <img src="img/churn_warning.png" />
+
+In this situation, we need to be aware that Jessie is likely to leave our business. We might need extra communication or an retention offer to trigger he came back.
 
 # Summary
 <a id="sm"> </a>
@@ -145,8 +181,6 @@ In
 * CLTV model reduces bias in customer spending prediction than using the mean.
 * CLTV helps identify the most value customer
 * Alternative way to predict churn
-Integrate with Churn Prediction. Would it be a good way to fill in the cost-benefit matrix? 
-Expend the model to include more transactional information, i.e. what they buy.
 
 ## What’s next
 * Integrate with Churn Prediction. Would it be a good way to fill in the cost-benefit matrix? 
