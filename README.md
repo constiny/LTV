@@ -7,7 +7,7 @@ By Vince Pan
 # Table of Contents
 [1. Background](#Background)<br> 
 [2. Methodology](#Methodology)<br> 
->   [2.1. Brief walkthrough](#bw)<br>
+>   [2.1. Theory walkthrough](#bw)<br>
 >   [2.2. Project setting](#ps)<br>
     
 [3. Model](#Model)
@@ -57,13 +57,12 @@ The problem of CLTV is a forecasting problem which often could be modelled with 
 
 Back in 1987, the first probabilistic model able to estimate customer future purchase was made by Schmittlein, Morrison, and Colombo. Then in 1999, Colombo and Jiang developed the gamma-gamma customer spending model which completes the customer lifetime value theory.
 
-## Brief walkthrough
+## Sales Decomposition
 <a id="bw"> </a>
 The essential idea of CLTV modelling is to decompose the total spending of a customer
 
 > Total Sales = Number of transactions * Single transaction amount
 > = Number of transaction in Unit time * Customer Purchasing Lifetime Length * Single Transaction Amount
-
 
 Each element is following a common probability distribution.
 
@@ -71,11 +70,16 @@ Each element is following a common probability distribution.
 > * Customer Purchasing Lifetime Length ~ Exponential Distribution
 > * Single Transaction Amount ~ Gamma Distribution
 
-We could utilize the customer purchasing history to estimate the distribution parameters. For detailed derivation, please refer to the papers in the appendix.
+## Pareto-NGD Gamma-Gamma
+The model we adopt in this study is called **Pareto-NGD Gamma-Gamma** model which is combined by two probalistic model,**Pareto-NGD** for when will customer buy and **Gamma-Gamma** for how much will customer buy. These two models  utilize the customer purchasing history to estimate the distribution parameters which could be derived by **Maximum Likelihood Estimation**. The model Pareto-NGD Gamma-Gamma is an advanced but popular technique in studying CLTV hence it is also known as CLTV model.
+
+For detailed derivation, please refer to the papers in the appendix.
+
+> Note: The CLTV model in below is refer to the Pareto-NGD Gamma-Gamma model.
 
 ## Project setting
 <a id="ps"> </a>
-We are going to apply the CLTV model to a real-life e-commerce case and compare CLTV model’s performance to traditional supervised learning methods including Random Forest, OLS, etc.
+We are going to apply the CLTV model to a real-life e-commerce case and compare CLTV model’s prediction performance to traditional supervised learning methods including Random Forest, OLS, SVM.
 
 
 # Model
@@ -121,11 +125,13 @@ For comparison with supervised methods, we divided the training set into 8:2 in 
 Similar to the classical marketing segmentation method, the CLTV model only rely on the RFM metrics of customer previous purchases. 
 
 Here are the features we need:
+
 Recency:
 * T:   represents the age of the customer in present time, i.e. how many days since his first purchase
 * R:  represents the age of the customer when they made their most recent purchases, , i.e. how many days since his first purchase
 
 F for Frequency: represents the number of repeat purchases the customer has made, i.e. how many purchases he made after the first one
+
 M for Monetery: represents the average value of a given customer’s purchases, i.e. average amount
 
 We used the same feature for the CLTV model and other classical machine learning models.
@@ -144,6 +150,8 @@ To compare with the most intuitive method of the prediction, we use the mean of 
 | RMSE*     |         3140         |    1660    |         1808        |        1774       |2682 |
 
 The CLTV model has the lowest RMSE which indicates it has the highest accuracy in prediction. Also the model has a strong interpretability for business applications. 
+
+> Note: Supervised Learning methods were tuned with up to 120 hyperparameters through grid-searching.
 
 # Applications
 <a id="Applications"> </a>
