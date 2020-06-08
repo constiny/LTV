@@ -22,8 +22,7 @@ By Vince Pan
 
 [6. Appendix](#Appendix)
 
------------------------
-
+<img src="img/tools.png" />
 
 # Background
 <a id="Background"> </a>
@@ -90,7 +89,7 @@ We are going to apply the CLTV model to a real-life e-commerce case and compare 
 
 We use a typical transactional dataset which includes the person, time and amount of the transaction. The dataset describes all transaction records for a UK-based and registered non-store online retail which can also be found in https://www.kaggle.com/carrie1/ecommerce-data.
  
-The original dataset was not extracted with the purpose of CLTV study. We truncate the date range into 12 month and keep the purchasing history with below features.
+The original dataset was not extracted with the purpose of CLTV study. We use Pyspark SQL to load in the data and truncate the date range into 12 month and keep the purchasing history with below features.
  
 Date Range: 2010-12-01 ~ 2011-11-30
 Features: 
