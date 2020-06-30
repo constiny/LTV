@@ -61,16 +61,22 @@ Back in 1987, the first probabilistic model able to estimate customer future pur
 The essential idea of CLTV modelling is to decompose the total spending of a customer
 
 > Total Sales = Number of transactions * Single transaction amount
+
 > = Number of transaction in Unit time * Customer Purchasing Lifetime Length * Single Transaction Amount
 
 Each element is following common probability distribution.
 
 > * Number of transaction in Unit time ~ Poisson Distribution
+
 > * Customer Purchasing Lifetime Length ~ Exponential Distribution
+
 > * Single Transaction Amount ~ Gamma Distribution
 
+
 ## Pareto-NGD Gamma-Gamma
-The model we adopt in this study is called **Pareto-NGD Gamma-Gamma** model which is combined by two probabilistic models,**Pareto-NGD** for when will the customer buy and **Gamma-Gamma** for how much will the customer buy. These two models utilize the customer purchasing history to estimate the distribution parameters which could be derived by **Maximum Likelihood Estimation**. The model Pareto-NGD Gamma-Gamma is an advanced but popular technique in studying CLTV hence it is also known as the CLTV model.
+The model we adopt in this study is called **Pareto-NGD Gamma-Gamma** model which is combined by two probabilistic models,**Pareto-NGD** for when will the customer buy and **Gamma-Gamma** for how much will the customer buy. 
+
+These two models utilize the customer purchasing history to estimate the distribution parameters which could be derived by **Maximum Likelihood Estimation**. The model Pareto-NGD Gamma-Gamma is an advanced but popular technique in studying CLTV hence it is also known as the CLTV model.
 
 For detailed derivation, please refer to the papers in the appendix.
 
